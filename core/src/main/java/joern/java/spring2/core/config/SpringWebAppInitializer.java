@@ -1,23 +1,21 @@
 package joern.java.spring2.core.config;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
-
-public class SpringWebAppInitializer implements WebApplicationInitializer {
+public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	 
     @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-        appContext.register(ApplicationContextConfig.class);
-         
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet(
-                "SpringDispatcher", new DispatcherServlet(appContext));
-        dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class[] { ApplicationConfig.class };
+    }
+
+    @Override
+    protected String[] getServletMappings() {
+        return new String[] { "/" };
+    }
+
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return null;
     }
 }
