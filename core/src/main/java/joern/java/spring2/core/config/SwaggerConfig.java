@@ -14,6 +14,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+	
+	public static final String API_PATH = "/api";
 
     @Bean
     public Docket api(){
@@ -21,7 +23,7 @@ public class SwaggerConfig {
             .select()
             // .apis(RequestHandlerSelectors.any())
             .apis(RequestHandlerSelectors.basePackage("joern.java.spring2"))
-            .paths(PathSelectors.regex("/api/.*"))
+            .paths(PathSelectors.regex(API_PATH+"/.*"))
             .build()
             .apiInfo(apiInfo());
     }

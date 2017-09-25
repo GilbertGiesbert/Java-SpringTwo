@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import io.swagger.annotations.ApiOperation;
 import joern.java.spring2.core.dao.UserDAO;
 import joern.java.spring2.core.model.User;
 
@@ -24,7 +23,6 @@ public class HomeController {
     @Autowired
     private UserDAO userDao;
  
-    @ApiOperation(value= "list all users")
     @RequestMapping("/")
     public ModelAndView handleRequest() throws Exception {
         List<User> listUsers = userDao.list();
