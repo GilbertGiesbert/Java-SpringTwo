@@ -1,8 +1,10 @@
 package joern.java.spring2.core.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,9 @@ import joern.java.spring2.core.model.User;
 
 @RestController
 public class SwaggerController {
+	
+	@Autowired
+	private MessageSource messageSource;
 	
 	@Autowired
     private UserDAO userDao;
@@ -46,6 +51,13 @@ public class SwaggerController {
 	@RequestMapping(value = SwaggerConfig.API_PATH+"/userList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> userList() {
 		return userDao.list();
+    }
+	
+	@RequestMapping(value = SwaggerConfig.API_PATH+"/helloMessage", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String helloMessage(Locale locale) {
+		
+		String message = "locale="+locale+", message="+messageSource.getMessage("hello", null, locale);
+		return message;
     }
 	
 	@RequestMapping(value = SwaggerConfig.API_PATH+"/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
