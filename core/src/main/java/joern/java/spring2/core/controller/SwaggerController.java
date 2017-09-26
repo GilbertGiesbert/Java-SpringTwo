@@ -22,6 +22,7 @@ import joern.java.spring2.core.model.Person;
 import joern.java.spring2.core.model.User;
 
 @RestController
+@RequestMapping(value = SwaggerConfig.API_PATH)
 public class SwaggerController {
 	
 	@Autowired
@@ -30,7 +31,7 @@ public class SwaggerController {
 	@Autowired
     private UserDAO userDao;
 	
-	@RequestMapping(value = SwaggerConfig.API_PATH+"/person", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/person", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Person person() {
 		
 		Person p = new Person();
@@ -39,7 +40,7 @@ public class SwaggerController {
 		return p;
     }
 	
-	@RequestMapping(value = SwaggerConfig.API_PATH+"/person/{name}/{age}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/person/{name}/{age}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Person person(@PathVariable String name, @PathVariable int age) {
 		
 		Person p = new Person();
@@ -48,19 +49,19 @@ public class SwaggerController {
 		return p;
     }
 	
-	@RequestMapping(value = SwaggerConfig.API_PATH+"/userList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/userList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> userList() {
 		return userDao.list();
     }
 	
-	@RequestMapping(value = SwaggerConfig.API_PATH+"/helloMessage", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
+	@RequestMapping(value = "/helloMessage", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
     public String helloMessage(Locale locale) {
 		
 		String message = "locale="+locale+", message="+messageSource.getMessage("hello", null, locale);
 		return message;
     }
 	
-	@RequestMapping(value = SwaggerConfig.API_PATH+"/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User user(@PathVariable int id) {
 		return userDao.get(id);
     }
@@ -72,7 +73,7 @@ public class SwaggerController {
             @ApiResponse(code = 404, message = "This guy was n't found."),
             @ApiResponse(code = 402, message = "You didn't pay enough.")
     })
-	@RequestMapping(value = SwaggerConfig.API_PATH+"/bailOut/{id}/{bail}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/bailOut/{id}/{bail}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> bailOut(@PathVariable int id, @PathVariable int bail) {
     	
     	if(bail < 100) {
