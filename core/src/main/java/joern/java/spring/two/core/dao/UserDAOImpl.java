@@ -1,4 +1,4 @@
-package joern.java.spring2.core.dao;
+package joern.java.spring.two.core.dao;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import joern.java.spring2.core.model.User;
+import joern.java.spring.two.core.model.User;
 
 @Repository
 public class UserDAOImpl implements UserDAO {

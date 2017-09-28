@@ -1,8 +1,8 @@
-package joern.java.spring2.core.dao;
+package joern.java.spring.two.core.dao;
 
 import java.util.List;
 
-import joern.java.spring2.core.model.User;
+import joern.java.spring.two.core.model.User;
 
 public interface UserDAO {
 	

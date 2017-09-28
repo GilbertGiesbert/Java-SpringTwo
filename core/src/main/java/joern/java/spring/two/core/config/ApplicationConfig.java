@@ -1,4 +1,4 @@
-package joern.java.spring2.core.config;
+package joern.java.spring.two.core.config;
 
 import java.nio.charset.StandardCharsets;
 
@@ -18,11 +18,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 
-import joern.java.spring2.core.model.User;
+import joern.java.spring.two.core.model.User;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("joern.java.spring2")
+@ComponentScan("joern.java.spring.two")
 public class ApplicationConfig extends WebMvcConfigurerAdapter {
  
 	

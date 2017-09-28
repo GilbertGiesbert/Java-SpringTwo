@@ -1,4 +1,4 @@
-package joern.java.spring2.core.config;
+package joern.java.spring.two.core.config;
 
 import javax.sql.DataSource;
 
@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import joern.java.spring2.core.dao.UserDAO;
-import joern.java.spring2.core.dao.UserDAOImpl;
+import joern.java.spring.two.core.dao.UserDAO;
+import joern.java.spring.two.core.dao.UserDAOImpl;
 
 @Configuration
 @EnableTransactionManagement

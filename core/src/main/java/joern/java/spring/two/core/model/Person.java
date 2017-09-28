@@ -1,4 +1,4 @@
-package joern.java.spring2.core.model;
+package joern.java.spring.two.core.model;
 
 public class Person {
 	

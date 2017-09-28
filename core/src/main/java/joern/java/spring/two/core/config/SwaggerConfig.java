@@ -1,4 +1,4 @@
-package joern.java.spring2.core.config;
+package joern.java.spring.two.core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
             .select()
             // .apis(RequestHandlerSelectors.any())
-            .apis(RequestHandlerSelectors.basePackage("joern.java.spring2"))
+            .apis(RequestHandlerSelectors.basePackage("joern.java.spring.two"))
             .paths(PathSelectors.regex(API_PATH+"/.*"))
             .build()
             .apiInfo(apiInfo());

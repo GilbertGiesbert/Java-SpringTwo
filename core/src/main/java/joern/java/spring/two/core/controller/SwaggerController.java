@@ -1,4 +1,4 @@
-package joern.java.spring2.core.controller;
+package joern.java.spring.two.core.controller;
 
 import java.util.List;
 import java.util.Locale;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import joern.java.spring2.core.config.SwaggerConfig;
-import joern.java.spring2.core.dao.UserDAO;
-import joern.java.spring2.core.model.Person;
-import joern.java.spring2.core.model.User;
+import joern.java.spring.two.core.config.SwaggerConfig;
+import joern.java.spring.two.core.dao.UserDAO;
+import joern.java.spring.two.core.model.Person;
+import joern.java.spring.two.core.model.User;
 
 @RestController
 @RequestMapping(value = SwaggerConfig.API_PATH)

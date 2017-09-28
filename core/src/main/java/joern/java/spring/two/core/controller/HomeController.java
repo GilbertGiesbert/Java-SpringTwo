@@ -1,4 +1,4 @@
-package joern.java.spring2.core.controller;
+package joern.java.spring.two.core.controller;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import joern.java.spring2.core.dao.UserDAO;
-import joern.java.spring2.core.model.User;
+import joern.java.spring.two.core.dao.UserDAO;
+import joern.java.spring.two.core.model.User;
 
 /**
  * Handles requests for the application home page.

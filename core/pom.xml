@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 
-	<groupId>joern.java.spring2</groupId>
+	<groupId>joern.java.spring.two</groupId>
 	<artifactId>core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
