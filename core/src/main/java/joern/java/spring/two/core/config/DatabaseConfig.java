@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import joern.java.spring.two.core.dao.UserDAO;
 import joern.java.spring.two.core.dao.UserDAOImpl;
-import joern.java.spring.two.core.model.User;
 
 @Configuration
 @EnableTransactionManagement
@@ -58,7 +57,8 @@ public class DatabaseConfig {
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 	 
 	    LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-	    sessionBuilder.addAnnotatedClasses(User.class);
+	    // sessionBuilder.addAnnotatedClasses(User.class);
+	    sessionBuilder.scanPackages("joern.java.spring.two.core.model");
 	    return sessionBuilder.buildSessionFactory();
 	}
 	
