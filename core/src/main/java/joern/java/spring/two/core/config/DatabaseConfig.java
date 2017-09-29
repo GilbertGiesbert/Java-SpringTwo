@@ -21,9 +21,9 @@ import joern.java.spring.two.core.dao.UserDAOImpl;
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:database/database.properties")
-public class PersistenceConfig {
+public class DatabaseConfig {
 	
-    private static final Logger L = LoggerFactory.getLogger(PersistenceConfig.class);
+    private static final Logger L = LoggerFactory.getLogger(DatabaseConfig.class);
     
     @Autowired
     private Environment env;
