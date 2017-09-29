@@ -1,5 +1,7 @@
 package joern.java.spring.two.core.config;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -52,6 +54,20 @@ public class DatabaseConfig {
 	    return dataSource;
 	}
 	
+	private Properties getHibernateProperties() {
+		
+        String showSql = StringUtils.trimToNull(env.getProperty("hibernate.show_sql"));
+        String dialect = StringUtils.trimToNull(env.getProperty("hibernate.dialect"));
+        
+        L.debug("showSql: "+showSql);
+        L.debug("dialect: "+dialect);
+		
+	    Properties properties = new Properties();
+	    properties.put("hibernate.show_sql", showSql);
+	    properties.put("hibernate.dialect", dialect);
+	    return properties;
+	}
+	
 	@Autowired
 	@Bean(name = "sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
@@ -59,6 +75,7 @@ public class DatabaseConfig {
 	    LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 	    // sessionBuilder.addAnnotatedClasses(User.class);
 	    sessionBuilder.scanPackages("joern.java.spring.two.core.model");
+	    sessionBuilder.addProperties(getHibernateProperties());
 	    return sessionBuilder.buildSessionFactory();
 	}
 	
