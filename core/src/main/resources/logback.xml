@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<configuration scan="true" scanPeriod="5 seconds">
+  <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n" />
+  <property name="log.file" value="joern.log"/>
+  
+  <appender name="myconsole" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>${log.pattern}</pattern>
+    </encoder>
+  </appender>
+
+               
+  <logger name="joern.java.spring" additivity="false" level="debug" >
+  	<appender-ref ref="myconsole" />
+  </logger>
+  
+  <!-- Default settings -->
+  <root level="debug">
+    <appender-ref ref="myconsole"/>
+  </root>
+</configuration>
