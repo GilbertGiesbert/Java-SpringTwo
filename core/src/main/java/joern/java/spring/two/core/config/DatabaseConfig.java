@@ -13,10 +13,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import joern.java.spring.two.core.dao.UserDAO;
 import joern.java.spring.two.core.dao.UserDAOImpl;
+import joern.java.spring.two.core.model.User;
 
 @Configuration
 @EnableTransactionManagement
@@ -49,6 +51,15 @@ public class DatabaseConfig {
         dataSource.setPassword(password);
 
 	    return dataSource;
+	}
+	
+	@Autowired
+	@Bean(name = "sessionFactory")
+	public SessionFactory getSessionFactory(DataSource dataSource) {
+	 
+	    LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+	    sessionBuilder.addAnnotatedClasses(User.class);
+	    return sessionBuilder.buildSessionFactory();
 	}
 	
 	@Autowired

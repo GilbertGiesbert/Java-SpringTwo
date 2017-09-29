@@ -2,21 +2,14 @@ package joern.java.spring.two.core.config;
 
 import java.nio.charset.StandardCharsets;
 
-import javax.sql.DataSource;
-
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-
-import joern.java.spring.two.core.model.User;
 
 @Configuration
 @EnableWebMvc
@@ -32,17 +25,6 @@ public class AppConfig {
 	    viewResolver.setSuffix(".jsp");
 	    return viewResolver;
 	}
-	
-
-	@Autowired
-	@Bean(name = "sessionFactory")
-	public SessionFactory getSessionFactory(DataSource dataSource) {
-	 
-	    LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-	    sessionBuilder.addAnnotatedClasses(User.class);
-	    return sessionBuilder.buildSessionFactory();
-	}
-
 	
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
