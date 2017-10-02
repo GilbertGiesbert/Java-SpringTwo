@@ -12,7 +12,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,11 +22,7 @@ public class UserDAOImpl implements UserDAO {
 	
 	private static final Logger L = LoggerFactory.getLogger(UserDAOImpl.class);
 	
-    @Autowired
     private SessionFactory sessionFactory;
- 
-    public UserDAOImpl() {
-    }
      
     public UserDAOImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -58,9 +53,11 @@ public class UserDAOImpl implements UserDAO {
     @Override
     @Transactional
     public void delete(int id) {
-        User userToDelete = new User();
-        userToDelete.setId(id);
-        sessionFactory.getCurrentSession().delete(userToDelete);
+
+    	User u = get(id);
+    	if(u != null) {
+    		sessionFactory.getCurrentSession().delete(u);
+    	}
     }
  
     @Override
