@@ -15,69 +15,74 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import joern.java.spring.two.core.model.User;
-
 @Repository
-public class UserDAOImpl implements UserDAO {
+public class DaoImpl<E> implements Dao<E> {
 	
-	private static final Logger L = LoggerFactory.getLogger(UserDAOImpl.class);
+	private static final Logger L = LoggerFactory.getLogger(DaoImpl.class);
 	
     private SessionFactory sessionFactory;
+    
+    private Class<E> entityClass;
      
-    public UserDAOImpl(SessionFactory sessionFactory) {
+    public DaoImpl() {
+    	// don't know why but spring initialization needs no args constructor
+    }
+    
+    public DaoImpl(Class<E> entityClass, SessionFactory sessionFactory) {
+    	this.entityClass = entityClass;
         this.sessionFactory = sessionFactory;
     }
  
     @Override
     @Transactional
-    public List<User> list() {      
+    public List<E> list() {      
 
         Session session = sessionFactory.getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
+        CriteriaQuery<E> query = builder.createQuery(entityClass);
+        Root<E> root = query.from(entityClass);
         query.select(root);
         
-        Query<User> q = session.createQuery(query);
-        List<User> list = q.getResultList();
+        Query<E> q = session.createQuery(query);
+        List<E> list = q.getResultList();
         
         return list;
     }
  
     @Override
     @Transactional
-    public void saveOrUpdate(User user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+    public void saveOrUpdate(E e) {
+        sessionFactory.getCurrentSession().saveOrUpdate(e);
     }
  
     @Override
     @Transactional
     public void delete(int id) {
 
-    	User u = get(id);
-    	if(u != null) {
-    		sessionFactory.getCurrentSession().delete(u);
+    	E e = get(id);
+    	if(e != null) {
+    		sessionFactory.getCurrentSession().delete(e);
     	}
     }
  
     @Override
     @Transactional
-    public User get(int id) {
+    public E get(int id) {
     	
     	Session session = sessionFactory.getCurrentSession();
     	CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
+        CriteriaQuery<E> query = builder.createQuery(entityClass);
+        Root<E> root = query.from(entityClass);
         query.select(root).where(builder.equal(root.get("id"), id));
         
-        Query<User> q = session.createQuery(query);
-        User user = null;
+        Query<E> q = session.createQuery(query);
+        E e = null;
         
         try {
-        	user = q.getSingleResult();
-        }catch(NoResultException e) {
-        	L.debug("Failed to get user with id="+id+" from database.", e);
+        	e = q.getSingleResult();
+        }catch(NoResultException ex) {
+        	L.debug("Failed to get "+entityClass.getSimpleName()+" from database. Check id: "+id, ex);
         }
-        return user;
+        return e;
     }
 }

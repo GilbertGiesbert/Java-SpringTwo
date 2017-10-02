@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import joern.java.spring.two.core.dao.UserDAO;
+import joern.java.spring.two.core.dao.Dao;
 import joern.java.spring.two.core.model.User;
 
 /**
@@ -21,7 +21,7 @@ import joern.java.spring.two.core.model.User;
 public class HomeController {
      
     @Autowired
-    private UserDAO userDao;
+    private Dao<User> userDao;
  
     @RequestMapping("/")
     public ModelAndView handleRequest() throws Exception {

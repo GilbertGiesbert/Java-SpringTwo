@@ -18,8 +18,9 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import joern.java.spring.two.core.dao.UserDAO;
-import joern.java.spring.two.core.dao.UserDAOImpl;
+import joern.java.spring.two.core.dao.Dao;
+import joern.java.spring.two.core.dao.DaoImpl;
+import joern.java.spring.two.core.model.User;
 
 @Configuration
 @EnableTransactionManagement
@@ -90,8 +91,8 @@ public class DatabaseConfig {
 	
 	@Autowired
 	@Bean(name = "userDao")
-	public UserDAO getUserDao(SessionFactory sessionFactory) {
-	    return new UserDAOImpl(sessionFactory);
+	public Dao<User> getUserDao(SessionFactory sessionFactory) {
+	    return new DaoImpl<User>(User.class, sessionFactory);
 	}
 
 }

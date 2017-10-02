@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import joern.java.spring.two.core.config.SwaggerConfig;
-import joern.java.spring.two.core.dao.UserDAO;
+import joern.java.spring.two.core.dao.Dao;
 import joern.java.spring.two.core.model.Person;
 import joern.java.spring.two.core.model.User;
 
@@ -29,7 +29,7 @@ public class SwaggerController {
 	private MessageSource messageSource;
 	
 	@Autowired
-    private UserDAO userDao;
+    private Dao<User> userDao;
 	
 	@RequestMapping(value = "/person", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Person person() {
