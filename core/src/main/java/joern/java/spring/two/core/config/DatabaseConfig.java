@@ -56,15 +56,18 @@ public class DatabaseConfig {
 	
 	private Properties getHibernateProperties() {
 		
-        String showSql = StringUtils.trimToNull(env.getProperty("hibernate.show_sql"));
         String dialect = StringUtils.trimToNull(env.getProperty("hibernate.dialect"));
+        String showSql = StringUtils.trimToNull(env.getProperty("hibernate.show_sql"));
+        String formatSql = StringUtils.trimToNull(env.getProperty("hibernate.format_sql"));
         
-        L.debug("showSql: "+showSql);
         L.debug("dialect: "+dialect);
+        L.debug("showSql: "+showSql);
+        L.debug("formatSql: "+formatSql);
 		
 	    Properties properties = new Properties();
-	    properties.put("hibernate.show_sql", showSql);
 	    properties.put("hibernate.dialect", dialect);
+	    properties.put("hibernate.show_sql", showSql);
+	    properties.put("hibernate.format_sql", formatSql);
 	    return properties;
 	}
 	
