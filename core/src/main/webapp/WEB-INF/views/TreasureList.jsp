@@ -5,30 +5,30 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home</title>
+        <title>Treasure List</title>
     </head>
     <body>
         <div align="center">
-	        <h1>User List</h1>
-	        <h2><a href="new">New User</a></h2>
+	        <h1>Treasure List</h1>
+	        <h2><a href="new">New Treasure</a></h2>
 	        
         	<table border="1">
 	        	<th>No</th>
 	        	<th>Id</th>
-	        	<th>Username</th>
-	        	<th>Email</th>
+	        	<th>name</th>
+	        	<th>valueInCents</th>
 	        	<th>Actions</th>
 	        	
-				<c:forEach var="user" items="${userList}" varStatus="status">
+				<c:forEach var="treasure" items="${treasureList}" varStatus="status">
 		        	<tr>
 		        		<td>${status.index + 1}</td>
-		        		<td>${user.id}</td>
-						<td>${user.username}</td>
-						<td>${user.email}</td>
+		        		<td>${treasure.id}</td>
+						<td>${treasure.name}</td>
+						<td>${treasure.valueInCents}</td>
 						<td>
-							<a href="edit?id=${user.id}">Edit</a>
+							<a href="edit?id=${treasure.id}">Edit</a>
 							&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="delete?id=${user.id}">Delete</a>
+							<a href="delete?id=${treasure.id}">Delete</a>
 						</td>
 		        	</tr>
 				</c:forEach>	        	

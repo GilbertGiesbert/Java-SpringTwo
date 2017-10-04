@@ -5,26 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>New or Edit User</title>
+<title>New or Edit Treasure</title>
 </head>
 <body>
 	<div align="center">
-		<h1>New/Edit User</h1>
+		<h1>New/Edit Treasure</h1>
 		Get-Form
 		<table>
-			<form:form action="save" method="get" modelAttribute="user">
+			<form:form action="save" method="get" modelAttribute="treasure">
 				<form:hidden path="id" />
 				<tr>
-					<td>Username:</td>
-					<td><form:input path="username" /></td>
+					<td>name:</td>
+					<td><form:input path="name" /></td>
 				</tr>
 				<tr>
-					<td>Email:</td>
-					<td><form:input path="email" /></td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><form:password path="password" /></td>
+					<td>valueInCents:</td>
+					<td><form:input path="valueInCents" /></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit" value="Save"></td>
@@ -33,19 +29,15 @@
 		</table>
 		Post-Form
 		<table>
-			<form:form action="save" method="post" modelAttribute="user">
+			<form:form action="save" method="post" modelAttribute="treasure">
 				<form:hidden path="id" />
 				<tr>
-					<td>Username:</td>
-					<td><form:input path="username" /></td>
+					<td>name:</td>
+					<td><form:input path="name" /></td>
 				</tr>
 				<tr>
-					<td>Email:</td>
-					<td><form:input path="email" /></td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><form:password path="password" /></td>
+					<td>valueInCents:</td>
+					<td><form:input path="valueInCents" /></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit" value="Save"></td>

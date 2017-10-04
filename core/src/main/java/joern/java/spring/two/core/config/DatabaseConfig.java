@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import joern.java.spring.two.core.dao.Dao;
 import joern.java.spring.two.core.dao.DaoImpl;
+import joern.java.spring.two.core.model.Treasure;
 import joern.java.spring.two.core.model.User;
 
 @Configuration
@@ -93,6 +94,12 @@ public class DatabaseConfig {
 	@Bean(name = "userDao")
 	public Dao<User> getUserDao(SessionFactory sessionFactory) {
 	    return new DaoImpl<User>(User.class, sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name = "treasureDao")
+	public Dao<Treasure> getTreasureDao(SessionFactory sessionFactory) {
+	    return new DaoImpl<Treasure>(Treasure.class, sessionFactory);
 	}
 
 }
