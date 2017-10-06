@@ -33,12 +33,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
  
         clients
     	.inMemory()
-        .withClient("my-trusted-client")
+        .withClient("trusted-client")
         .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
         .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
         .scopes("read", "write", "trust")
         .secret("secret")
-        .accessTokenValiditySeconds(120)
+        .accessTokenValiditySeconds(5)
         .refreshTokenValiditySeconds(600);
     }
  
